@@ -1,6 +1,6 @@
 package com.forttiori.authtoken.infrastructure.security;
 
-import com.forttiori.authtoken.infrastructure.repository.UserRepository;
+import com.forttiori.authtoken.infrastructure.repository.user.UserRepository;
 import com.forttiori.authtoken.domain.TokenService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -16,7 +16,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
-import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor

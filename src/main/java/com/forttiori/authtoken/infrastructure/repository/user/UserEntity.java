@@ -1,4 +1,4 @@
-package com.forttiori.authtoken.infrastructure.repository;
+package com.forttiori.authtoken.infrastructure.repository.user;
 
 import com.forttiori.authtoken.contract.response.UserResponse;
 import lombok.AllArgsConstructor;

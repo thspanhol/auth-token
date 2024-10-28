@@ -4,7 +4,7 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
-import com.forttiori.authtoken.infrastructure.repository.UserEntity;
+import com.forttiori.authtoken.infrastructure.repository.user.UserEntity;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -25,7 +25,7 @@ public class TokenService {
             return JWT.create()
                     .withIssuer("auth-token")
                     .withSubject(user.getUserId())
-                    .withExpiresAt(LocalDateTime.now().plusMinutes(60).toInstant(ZoneOffset.of("-03:00")))
+                    .withExpiresAt(LocalDateTime.now().plusMinutes(1).toInstant(ZoneOffset.of("-03:00")))
                     .sign(algorithm);
         } catch (JWTCreationException e) {
             throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "Error generating JWT Token.");

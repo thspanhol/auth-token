@@ -4,6 +4,7 @@ import com.forttiori.authtoken.contract.request.LoginRequest;
 import com.forttiori.authtoken.contract.request.UserRequest;
 import com.forttiori.authtoken.contract.response.LoginResponse;
 import com.forttiori.authtoken.contract.response.UserResponse;
+import com.forttiori.authtoken.domain.ShoppingCartService;
 import com.forttiori.authtoken.domain.UserService;
 import jakarta.annotation.security.RolesAllowed;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,7 @@ import java.util.List;
 public class AuthContract {
 
     private final UserService userService;
+    private final ShoppingCartService shoppingCartService;
 
     @PostMapping("login")
     public LoginResponse login(@RequestBody LoginRequest loginRequest) {
@@ -32,5 +34,11 @@ public class AuthContract {
     @RolesAllowed("ADMIN")
     public List<UserResponse> getUsers() {
         return userService.getUsers();
+    }
+
+    @GetMapping("cart")
+    @RolesAllowed("USER")
+    public String getCart() {
+        return shoppingCartService.getShoppingCart();
     }
 }
