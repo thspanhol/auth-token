@@ -34,6 +34,10 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/v1/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/v1/auth/register").permitAll()
+
+                                //.requestMatchers(HttpMethod.DELETE, "/v1/auth/*").permitAll()
+                                //.requestMatchers(HttpMethod.PUT, "/v1/auth/*").permitAll()
+
 //                        .requestMatchers(HttpMethod.POST, "/v1/auth/verify").permitAll()
                         .requestMatchers(HttpMethod.GET, "/actuator/**").permitAll()
                         .anyRequest().authenticated()

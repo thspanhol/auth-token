@@ -30,6 +30,16 @@ public class AuthContract {
         return userService.register(userRequest);
     }
 
+    @DeleteMapping("{id}")
+    public void delete(@PathVariable String id) {
+        userService.deleteUser(id);
+    }
+
+    @PutMapping("{id}")
+    public UserResponse register(@PathVariable String id, @RequestBody UserRequest userRequest) {
+        return userService.updateUser(id, userRequest);
+    }
+
     @GetMapping("verify")
     @RolesAllowed("ADMIN")
     public List<UserResponse> getUsers() {

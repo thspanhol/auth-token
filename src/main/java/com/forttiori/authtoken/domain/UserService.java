@@ -49,4 +49,21 @@ public class UserService {
         UserEntity user = (UserEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return userRepository.findAll().stream().map(UserEntity::fromEntity).toList();
     }
+
+    public void deleteUser(String userId) {
+        UserEntity user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found."));
+        userRepository.deleteById(userId);
+    }
+
+    public UserResponse updateUser(String userId, UserRequest userRequest) {
+        UserEntity user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found."));
+
+        user.setUsername(userRequest.username());
+        user.setPassword(passwordEncoder.encode(userRequest.password()));
+        user.setRole(userRequest.role());
+
+        return userRepository.save(user).fromEntity();
+    }
 }

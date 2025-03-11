@@ -25,7 +25,7 @@ public class TokenService {
             return JWT.create()
                     .withIssuer("auth-token")
                     .withSubject(user.getUserId())
-                    .withExpiresAt(LocalDateTime.now().plusMinutes(1).toInstant(ZoneOffset.of("-03:00")))
+                    .withExpiresAt(LocalDateTime.now().plusMinutes(10).toInstant(ZoneOffset.of("-03:00")))
                     .sign(algorithm);
         } catch (JWTCreationException e) {
             throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED, "Error generating JWT Token.");
